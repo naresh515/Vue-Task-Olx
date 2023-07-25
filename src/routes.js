@@ -1,6 +1,6 @@
 import Home from "./components/home.vue";
 import signup from "./components/Signup.vue";
-import login from "./components/Login.vue";
+import login from "./components/login.vue";
 import notFound from "./components/NotFound.vue";
 import add from "./components/add.vue";
 import product from "./components/product.vue";
