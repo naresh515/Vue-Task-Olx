@@ -27,6 +27,9 @@ export default {
             }
         }
     },
+    created() {
+        // this.$root.$on('filter-selected', this.filterData)
+    },
     methods: {
         async getdata(id) {
             let result = await axios.get("http://localhost:3000/Product")
@@ -36,6 +39,11 @@ export default {
     },
     mounted() {
         this.getdata(this.id)
+    },
+    filterData(selectedName) {
+        this.Product = this.products.filter(product => {
+            return product.name.toLowerCase().includes(selectedName.toLowerCase());
+        });
     }
 }
 </script>
