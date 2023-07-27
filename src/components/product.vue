@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="img-container first" v-for="item in Product" :key="item.name">
+        <div class="img-container first" v-for="item in filterProduct" :key="item.name">
             <img class="imgs" :src="item.photo">
             <span class="product-name">{{ item.name }}</span>
             <span class="product-details">{{ item.details }}</span>
@@ -16,7 +16,8 @@ export default {
     name: "product",
     data() {
         return {
-            Product: []
+            Product: [],
+            search: ''
         }
     },
     props: {
@@ -28,15 +29,27 @@ export default {
         }
     },
     methods: {
-        async getdata(id) {
-            let result = await axios.get("http://localhost:3000/Product")
-            let dataSale = result.data.filter((x) => x.option == id)
-            this.Product = dataSale
-        }
+        getdata(id) {
+            axios.get("http://localhost:3000/Product")
+                .then(response => {
+                    let dataSale = response.data.filter((x) => x.option == id)
+                    this.Product = dataSale;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        },
     },
     mounted() {
         this.getdata(this.id)
-    }
+    },
+    computed: {
+        filterProduct() {
+            return this.Product.filter(product => {
+                return product.name.toLowerCase().includes(this.search.toLowerCase())
+            })
+        }
+    },
 }
 </script>
 <style>
