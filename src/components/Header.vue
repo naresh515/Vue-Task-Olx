@@ -9,7 +9,7 @@
             <div class="searchBar-result">
                 <div class="items" v-for="item in filteredData" :key="item.id" @click="handleButton(item.name)">
                     <img class="imgs" :src="item.photo">
-                    <button>
+                    <button @click="navigateToProduct(item.name)">
                         {{ item.name }}</button>
                 </div>
             </div>
@@ -37,7 +37,10 @@ export default {
             this.filteredData = this.products.filter(product => {
                 return product.name.toLowerCase().includes(newQuery.toLowerCase());
             });
-        }
+        },
+        navigateToProduct(name) {
+            this.$emit('search', name)
+        },
     },
     created() {
         axios.get('http://localhost:3000/Product')

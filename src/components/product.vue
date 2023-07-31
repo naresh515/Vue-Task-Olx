@@ -17,7 +17,7 @@ export default {
     data() {
         return {
             Product: [],
-            search: ''
+            searchQuery: ''
         }
     },
     props: {
@@ -39,15 +39,27 @@ export default {
                     console.error('Error fetching data:', error);
                 });
         },
+        handleSearchQueryChange(searchQuery) {
+            this.searchQuery = searchQuery;
+        },
     },
     mounted() {
         this.getdata(this.id)
+
     },
     computed: {
         filterProduct() {
             return this.Product.filter(product => {
-                return product.name.toLowerCase().includes(this.search.toLowerCase())
+                return product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
             })
+        }
+    },
+    created() {
+        this.handleSearchQueryChange(this.$route.query.search || "");
+    },
+    watch: {
+        '$route.query.search'(newSearchQuery) {
+            this.handleSearchQueryChange(newSearchQuery);
         }
     },
 }
