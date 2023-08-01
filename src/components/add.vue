@@ -6,7 +6,7 @@
         <input type="text" placeholder="Product Name" name="name" v-model="Product.name">
         <input type="text" placeholder="Product Details" name="details" v-model="Product.details">
         <input type="number" placeholder="Product Price" name="price" v-model="Product.price">
-        <input class="file-input" ref="fileInput" type="file" @change="handleImageSelect" @click="chooseImage">
+        <input class="file-input" ref="fileInput" type="file" @change="handleImageSelect">
         <select v-model="Product.selectedOption" class="selected">
             <option value="rent">Rent</option>
             <option value="sale">Sale</option>
@@ -35,9 +35,6 @@ export default {
         }
     },
     methods: {
-        chooseImage() {
-            this.$refs.fileInput.click();
-        },
         handleImageSelect(event) {
             const file = event.target.files[0];
             if (file) {
