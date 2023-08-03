@@ -5,7 +5,9 @@ import notFound from "./components/Notfound.vue";
 import add from "./components/add.vue";
 import product from "./components/product.vue";
 import user from "./components/user.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import profile from "./components/profile.vue";
+import update from "./components/update.vue";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
@@ -42,12 +44,22 @@ const routes = [
   {
     name: "user",
     component: user,
-    path: "/user",
+    path: "/user/:id",
+  },
+  {
+    name: "profile",
+    component: profile,
+    path: "/profile",
+  },
+  {
+    name: "update",
+    component: update,
+    path: "/update/:id",
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 router.beforeEach((to, from, next) => {
@@ -55,7 +67,7 @@ router.beforeEach((to, from, next) => {
   if (userInfo && (to.name === "login" || to.name === "signup")) {
     next({ name: "Home" });
   } else if (!userInfo && to.name !== "login" && to.name !== "signup") {
-    next({ name: "signup" });
+    next({ name: "login" });
   } else {
     next();
   }

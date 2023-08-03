@@ -1,7 +1,7 @@
 <template>
     <div class="nav">
         <router-link to="/">Home</router-link>
-        <router-link to="/add">Add item</router-link>
+        <router-link to="/add" class="add-items"><i class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
         <div class="nav-bar">
             <input type="text" class="search-box" placeholder="Find Cars, Mobile Phones and more..."
                 v-model="searchQuery" />
@@ -14,7 +14,10 @@
                 </div>
             </div>
         </div>
-        <a href="#" v-on:click="logout()">Logout</a>
+        <div class="userDetails">
+            <p><router-link to="/profile" class="add-items">Profile</router-link></p>
+        </div>
+        <a href="#" v-on:click="logout()" class="add-items">Logout</a>
     </div>
 </template>
 <script>
@@ -31,7 +34,6 @@ export default {
     methods: {
         logout() {
             localStorage.clear();
-            this.$router.push({ name: "login" })
         },
         handleButton(newQuery) {
             this.filteredData = this.products.filter(product => {
@@ -69,6 +71,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
 }
 
 .nav a {
@@ -79,6 +83,7 @@ export default {
     font-size: 20px;
     margin-right: 20px;
     transition: all .3s ease-in-out;
+    cursor: pointer;
 }
 
 .nav a:hover {
@@ -154,5 +159,9 @@ export default {
     border-bottom: 1px solid #cac0c0;
     padding: 10px 0px;
     cursor: pointer;
+}
+
+.add-items {
+    font-size: 15px !important;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
+    <div class="container grid">
         <div class="img-container first" v-for="item in filterProduct" :key="item.name">
             <img class="imgs" :src="item.photo">
-            <span class="product-name">{{ item.name }}</span>
-            <span class="product-details">{{ item.details }}</span>
-            <span class="product-price">{{ item.price }}</span>
-            <button class="btn"><router-link to="/user">User-Info</router-link></button>
+            <span class="product-name">Name : &nbsp; {{ item.name }}</span>
+            <span class="product-details">Details : &nbsp; {{ item.details }}</span>
+            <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price }}</span>
+            <button class="btn"><router-link :to="'/user/' + item.id">User-Info</router-link></button>
         </div>
     </div>
 </template>
@@ -65,7 +65,7 @@ export default {
 }
 </script>
 <style>
-.container {
+.grid {
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr;

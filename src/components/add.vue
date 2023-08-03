@@ -1,4 +1,5 @@
 <template>
+    <h1>Add new post</h1>
     <div class="input-fileds">
         <input type="text" placeholder="User Name" name="Uname" v-model="Product.Uname">
         <input name="email" type="text" placeholder="Enter Your Email" v-model="Product.email">
@@ -13,6 +14,8 @@
             <option value="services">Services</option>
             <option value="accessories">accessories</option>
         </select>
+    </div>
+    <div class="btn-sub">
         <button type="submit" v-on:click="add()" class="add-btn">Add Item</button>
     </div>
 </template>
@@ -64,15 +67,24 @@ export default {
 }
 </script>
 <style scoped>
-.input-fileds {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 100px 0px;
+h1 {
+    padding-left: 80px;
+    font-weight: 600;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    margin: 20px 0px 0px;
 }
 
-.input-fileds input {
+.input-fileds {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    margin: 50px 0px 30px;
+}
+
+.input-fileds input,
+.selected {
     width: 300px;
     height: 40px;
     padding-left: 20px;
@@ -82,6 +94,11 @@ export default {
     outline: none;
 }
 
+.btn-sub {
+    width: 100%;
+    text-align: center;
+}
+
 .add-btn {
     border: 1px solid lightblue;
     width: 300px;
@@ -89,13 +106,6 @@ export default {
     cursor: pointer;
     background-color: skyblue;
     color: #fff;
-}
-
-.selected {
-    width: 100px;
-    height: 30px;
-    margin: 0px 0px 20px;
-    border: 1px solid skyblue;
-    outline: skyblue;
+    margin: 0px auto;
 }
 </style>

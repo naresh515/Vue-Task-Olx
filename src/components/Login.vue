@@ -2,7 +2,7 @@
     <h1>Login Page</h1>
     <div class="form">
         <div>
-            <label class="name">Email Add. : &nbsp;</label>
+            <label class="name">Email Address : &nbsp;</label>
             <input name="email" type="text" placeholder="Enter Your Email" v-model="email">
         </div>
         <div>
