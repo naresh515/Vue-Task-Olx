@@ -22,6 +22,11 @@
             <input name="password" type="password" placeholder="Enter Your password" v-model="password" required>
             <span v-for="error in error" class="errors">{{ error }}</span>
         </div>
+        <div>
+            <label class="name">Address : &nbsp;</label>
+            <input name="Address" type="text" placeholder="Enter Your Address" v-model="Address" required>
+            <span v-for="error in error" class="errors">{{ error }}</span>
+        </div>
         <button v-on:click="getData()" class="btn">signup</button>
         <div>
             <p>
@@ -51,7 +56,7 @@ export default {
 
                 alert("name")
 
-            } else if (this.email == '' || this.email != pattern) {
+            } else if (this.email == '') {
 
                 alert("email")
 
@@ -59,7 +64,7 @@ export default {
 
                 alert("mobile")
 
-            } else if (this.password == '' || this.password.length <= 8) {
+            } else if (this.password == '') {
 
                 alert("password")
 
@@ -69,7 +74,8 @@ export default {
                     fullname: this.fullname,
                     email: this.email,
                     mobile: this.mobile,
-                    password: this.password
+                    password: this.password,
+                    Address: this.Address
                 });
                 if (result.status == 201) {
                     localStorage.setItem("user-info", JSON.stringify(result.data));

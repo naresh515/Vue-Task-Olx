@@ -8,6 +8,7 @@
             <span class="product-Uname">User-Name: &nbsp; {{ Product.Uname }}</span>
             <span class="product-email">Email: &nbsp;{{ Product.email }}</span>
             <span class="product-mobile">Mobile Number: &nbsp;{{ Product.mobile }}</span>
+            <span class="product-Address">Address: &nbsp;{{ Product.Address }}</span>
         </div>
     </div>
 </template>

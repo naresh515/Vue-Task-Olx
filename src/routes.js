@@ -5,7 +5,7 @@ import notFound from "./components/Notfound.vue";
 import add from "./components/add.vue";
 import product from "./components/product.vue";
 import user from "./components/user.vue";
-import profile from "./components/profile.vue";
+import deshboard from "./components/deshboard.vue";
 import update from "./components/update.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
@@ -47,9 +47,9 @@ const routes = [
     path: "/user/:id",
   },
   {
-    name: "profile",
-    component: profile,
-    path: "/profile",
+    name: "deshboard",
+    component: deshboard,
+    path: "/deshboard",
   },
   {
     name: "update",

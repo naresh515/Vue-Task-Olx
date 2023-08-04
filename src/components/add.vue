@@ -1,9 +1,6 @@
 <template>
     <h1>Add new post</h1>
     <div class="input-fileds">
-        <input type="text" placeholder="User Name" name="Uname" v-model="Product.Uname">
-        <input name="email" type="text" placeholder="Enter Your Email" v-model="Product.email">
-        <input type="number" placeholder="Mobile No." name="mobile" v-model="Product.mobile">
         <input type="text" placeholder="Product Name" name="name" v-model="Product.name">
         <input type="text" placeholder="Product Details" name="details" v-model="Product.details">
         <input type="number" placeholder="Product Price" name="price" v-model="Product.price">
@@ -26,9 +23,6 @@ export default {
     data() {
         return {
             Product: {
-                Uname: '',
-                email: '',
-                mobile: '',
                 name: '',
                 details: '',
                 price: '',
@@ -50,9 +44,10 @@ export default {
         },
         async add() {
             const result = await axios.post("http://localhost:3000/Product", {
-                Uname: this.Product.Uname,
-                email: this.Product.email,
-                mobile: this.Product.mobile,
+                Uname: JSON.parse(localStorage.getItem("user-info")).fullname,
+                email: JSON.parse(localStorage.getItem("user-info")).email,
+                mobile: JSON.parse(localStorage.getItem("user-info")).mobile,
+                Address: JSON.parse(localStorage.getItem("user-info")).Address,
                 name: this.Product.name,
                 details: this.Product.details,
                 price: this.Product.price,

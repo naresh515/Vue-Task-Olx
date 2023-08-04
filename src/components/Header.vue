@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="userDetails">
-            <p><router-link to="/profile" class="add-items">Profile</router-link></p>
+            <p><router-link to="/deshboard" class="add-items">Profile</router-link></p>
         </div>
         <a href="#" v-on:click="logout()" class="add-items">Logout</a>
     </div>
