@@ -1,11 +1,18 @@
 <template>
-    <div class="container grid">
-        <div class="img-container first" v-for="item in filterProduct" :key="item.name">
-            <img class="imgs" :src="item.photo">
-            <span class="product-name">Name : &nbsp; {{ item.name }}</span>
-            <span class="product-details">Details : &nbsp; {{ item.details }}</span>
-            <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price }}</span>
-            <button class="btn"><router-link :to="'/user/' + item.id">User-Info</router-link></button>
+    <div class="sale-container product" v-if="filterProduct.length > 0">
+        <div class="top-container" v-if="obj.key">
+            <h1>{{ obj.title }}</h1>
+            <button type="button" class="button"><router-link :to="'/products/' + obj.key">More
+                    Details</router-link></button>
+        </div>
+        <div class="container grid">
+            <div class="img-container first" v-for="item in filterProduct" :key="item.name">
+                <img class="imgs" :src="item.photo">
+                <span class="product-name">Name : &nbsp; {{ item.name }}</span>
+                <span class="product-details">Details : &nbsp; {{ item.details }}</span>
+                <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price }}</span>
+                <button class="btn"><router-link :to="'/user/' + item.id">User-Info</router-link></button>
+            </div>
         </div>
     </div>
 </template>
@@ -25,6 +32,12 @@ export default {
             type: String,
             default: () => {
                 return "";
+            }
+        },
+        obj: {
+            type: Object,
+            default: () => {
+                return {}
             }
         }
     },
@@ -132,5 +145,36 @@ span {
 .btn a {
     text-decoration: none;
     color: white;
+}
+
+.button {
+    border: none;
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+
+.button a {
+    text-decoration: none;
+    color: white;
+}
+
+.button:hover {
+    background-color: black;
+    transition: all .5s ease-in-out;
+}
+
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 30px;
+}
+
+.product {
+    border: 1px solid #cfcfcf;
+    margin: 10px;
+    border-radius: 10px;
 }
 </style>
