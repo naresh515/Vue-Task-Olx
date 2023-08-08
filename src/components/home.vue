@@ -1,5 +1,5 @@
 <template>
-    <div class="items" v-for="item in items" v-if="hasData()">
+    <div class="items" v-for="item in items" v-if="items.length > 0">
         <div class="sale-container product">
             <div class="top-container">
                 <h1>{{ item.title }}</h1>
@@ -38,11 +38,6 @@ export default {
     },
     components: {
         product
-    },
-    methods: {
-        hasData() {
-            return this.items.length > 0
-        }
     }
 }
 </script>

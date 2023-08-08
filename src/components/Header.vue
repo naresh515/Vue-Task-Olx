@@ -3,14 +3,14 @@
         <router-link to="/"><i class="fa-solid fa-house"></i> Home</router-link>
         <router-link to="/add" class="add-items" v-if="$route.name !== 'login' && $route.name !== 'signup'"><i
                 class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
-        <div class="userDetails">
+        <div class="userDetails" v-if="$route.name !== 'login' && $route.name !== 'signup'">
             <p><router-link to="/deshboard" class="add-items">Profile</router-link></p>
         </div>
-        <div class="nav-bar" @click="showDiv = !showDiv" v-if="$route.name !== 'login' && $route.name !== 'signup'">
-            <input type="text" class="search-box" placeholder="Find Cars, Mobile Phones and more..."
-                v-model="searchQuery" />
+        <div class="nav-bar" @click="showDiv = true" v-if="$route.name !== 'login' && $route.name !== 'signup'">
+            <input type="text" class="search-box" placeholder="Find Cars, Mobile Phones and more..." v-model="searchQuery"
+                ref="showDivBar" />
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <div class="searchBar-result" v-show="showDiv">
+            <div class="searchBar-result" v-show="showDiv" ref="showDivResult">
                 <div class="items" v-for="item in filteredData" :key="item.id" @click="handleButton(item.name)">
                     <img class="imgs" :src="item.photo">
                     <button @click="navigateToProduct(item.name)">
@@ -20,9 +20,8 @@
         </div>
         <a href="#" v-on:click="logout()" class="add-items"
             v-if="$route.name !== 'login' && $route.name !== 'signup'">Logout</a>
-        <p class="login" v-if="$route.name === 'signup'"><router-link to="/login" class="add-items">Login</router-link></p>
-        <p class="signup" v-if="$route.name === 'login'"><router-link to="/signup" class="add-items">Signup</router-link>
-        </p>
+        <p v-if="$route.name === 'signup'"><router-link to="/login" class="add-items">Login</router-link></p>
+        <p v-if="$route.name === 'login'"><router-link to="/signup" class="add-items">Signup</router-link></p>
     </div>
 </template>
 <script>
@@ -47,6 +46,16 @@ export default {
         navigateToProduct(name) {
             this.$emit('search', name)
         },
+        OnClickOutside(event) {
+            const searchBar = this.$refs.showDivBar
+            const searchResult = this.$refs.showDivResult
+            if (searchBar && searchResult && !searchBar.contains(event.target) && !searchResult.contains(event.target)) {
+                this.showDiv = false
+            }
+        }
+    },
+    mounted() {
+        document.addEventListener('click', this.OnClickOutside)
     },
     created() {
         axios.get('http://localhost:3000/Product')
