@@ -62,7 +62,7 @@ export default {
 
             });
             if (result.status == 200) {
-                this.$router.push({ name: 'profile' })
+                this.$router.push({ name: 'deshboard' })
                 console.log(result)
             }
         }

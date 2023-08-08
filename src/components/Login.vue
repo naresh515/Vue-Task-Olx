@@ -4,17 +4,14 @@
         <div>
             <label class="name">Email Address : &nbsp;</label>
             <input name="email" type="text" placeholder="Enter Your Email" v-model="email">
+            <p class="errors">{{ EmailError }}</p>
         </div>
         <div>
             <label class="name">password : &nbsp;</label>
             <input name="password" type="password" placeholder="Enter Your password" v-model="password">
+            <p class="errors">{{ PasswordError }}</p>
         </div>
         <button v-on:click="login()" class="btn">Login</button>
-        <div>
-            <p>
-                <Router-link to="/signup" class="log">Signup</Router-link>
-            </p>
-        </div>
     </div>
 </template>
 <script>
@@ -24,18 +21,34 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            EmailError: '',
+            PasswordError: ''
         }
     },
     methods: {
         async login() {
+            this.EmailError = ''
+            this.PasswordError = ''
             let result = await axios.get(
-                `http://localhost:3000/users?email=${this.email}&password=${this.password}`
+                `http://localhost:3000/users`
             );
-            console.log(result)
-            if (result.status == 200 && result.data.length > 0) {
-                localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-                this.$router.push({ name: 'Home' });
+            if (this.email == '' || this.email != result.data[0].email) {
+
+                this.EmailError = 'Invalid Email'
+
+            } else if (this.password == '' || this.password != result.data[0].password) {
+
+                this.PasswordError = 'Invalid Password'
+
+            } else {
+                console.log(result)
+                console.log(result.data[0].password)
+                console.log(result.data[0].email)
+                if (result.status == 200 && result.data.length > 0) {
+                    localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+                    this.$router.push({ name: 'Home' });
+                }
             }
         }
     }
@@ -102,5 +115,10 @@ input {
     padding: 5px 20px;
     border-radius: 10px;
     float: left;
+}
+
+.errors {
+    color: red;
+    text-transform: capitalize;
 }
 </style>

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import product from "./product.vue"
+import product from "./product.vue";
 export default {
     name: "Home",
     data() {
@@ -54,6 +54,7 @@ export default {
     border-radius: 5px;
     padding: 10px 15px;
     transition: all .5s ease-in-out;
+    cursor: pointer;
 }
 
 .button a {

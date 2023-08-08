@@ -82,7 +82,7 @@ table {
 }
 
 .imgs {
-    width: 200px;
+    width: 220px;
 }
 
 .actions {

@@ -4,35 +4,29 @@
         <div>
             <label class="name">Fullname : &nbsp;</label>
             <input name="fullname" type="text" placeholder="Enter Your Full Name" v-model="fullname" required>
-            <span v-for="error in error" class="errors">{{ error }}</span>
+            <p class="errors">{{ FullnameError }}</p>
         </div>
         <div>
             <label class="name">Email Address : &nbsp;</label>
             <input name="email" type="text" placeholder="Enter Your Email" v-model="email" required>
-            <span v-for="error in error" class="errors">{{ error }}</span>
+            <p class="errors">{{ EmailError }}</p>
         </div>
         <div>
             <label class="name">Mobile Number : &nbsp;</label>
             <input type="number" placeholder="Mobile No." name="mobile" v-model="mobile" required>
-            <span v-for="error in error" class="errors">{{ error }}</span>
+            <p class="errors">{{ MobileNumberError }}</p>
 
         </div>
         <div>
             <label class="name">password : &nbsp;</label>
             <input name="password" type="password" placeholder="Enter Your password" v-model="password" required>
-            <span v-for="error in error" class="errors">{{ error }}</span>
+            <p class="errors">{{ PasswordError }}</p>
         </div>
         <div>
             <label class="name">Address : &nbsp;</label>
             <input name="Address" type="text" placeholder="Enter Your Address" v-model="Address" required>
-            <span v-for="error in error" class="errors">{{ error }}</span>
         </div>
         <button v-on:click="getData()" class="btn">signup</button>
-        <div>
-            <p>
-                <Router-link to="/login" class="log">Login</Router-link>
-            </p>
-        </div>
     </div>
 </template>
 
@@ -46,27 +40,34 @@ export default {
             email: '',
             mobile: '',
             password: '',
-            // error: []
+            FullnameError: '',
+            EmailError: '',
+            MobileNumberError: '',
+            PasswordError: ''
         }
     },
     methods: {
         async getData() {
-            var pattern = /^\b[a-zA-Z0-9.]+@[a-zA-Z0-9.]+.[a-z][A-Z]{2,4}\b$/i;
+            this.FullnameError = ''
+            this.EmailError = ''
+            this.MobileNumberError = ''
+            this.PasswordError = ''
+
             if (this.fullname == '' || this.fullname.length < 4) {
 
-                alert("name")
+                this.FullnameError = 'Invalid Name'
 
-            } else if (this.email == '') {
+            } else if (this.email == '' || !/^\b[a-zA-Z0-9.]+@[a-zA-Z0-9.]+.[a-z][A-Z]{2,4}\b$/i.test(this.email)) {
 
-                alert("email")
+                this.EmailError = 'Invalid Email'
 
-            } else if (this.mobile == '' || this.mobile.length < 10 || this.mobile.length > 10) {
+            } else if (this.mobile == '' || !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(this.mobile)) {
 
-                alert("mobile")
+                this.MobileNumberError = 'Invalid Mobile  Number'
 
-            } else if (this.password == '') {
+            } else if (this.password == '' || this.password.length < 6) {
 
-                alert("password")
+                this.PasswordError = 'Invalid Password'
 
             } else {
 
@@ -145,5 +146,10 @@ input {
     padding: 5px 20px;
     border-radius: 10px;
     float: left;
+}
+
+.errors {
+    color: red;
+    text-transform: capitalize;
 }
 </style>

@@ -1,12 +1,16 @@
 <template>
     <div class="nav">
-        <router-link to="/">Home</router-link>
-        <router-link to="/add" class="add-items"><i class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
-        <div class="nav-bar">
+        <router-link to="/"><i class="fa-solid fa-house"></i> Home</router-link>
+        <router-link to="/add" class="add-items" v-if="$route.name !== 'login' && $route.name !== 'signup'"><i
+                class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
+        <div class="userDetails">
+            <p><router-link to="/deshboard" class="add-items">Profile</router-link></p>
+        </div>
+        <div class="nav-bar" @click="showDiv = !showDiv" v-if="$route.name !== 'login' && $route.name !== 'signup'">
             <input type="text" class="search-box" placeholder="Find Cars, Mobile Phones and more..."
                 v-model="searchQuery" />
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <div class="searchBar-result">
+            <div class="searchBar-result" v-show="showDiv">
                 <div class="items" v-for="item in filteredData" :key="item.id" @click="handleButton(item.name)">
                     <img class="imgs" :src="item.photo">
                     <button @click="navigateToProduct(item.name)">
@@ -14,10 +18,11 @@
                 </div>
             </div>
         </div>
-        <div class="userDetails">
-            <p><router-link to="/deshboard" class="add-items">Profile</router-link></p>
-        </div>
-        <a href="#" v-on:click="logout()" class="add-items">Logout</a>
+        <a href="#" v-on:click="logout()" class="add-items"
+            v-if="$route.name !== 'login' && $route.name !== 'signup'">Logout</a>
+        <p class="login" v-if="$route.name === 'signup'"><router-link to="/login" class="add-items">Login</router-link></p>
+        <p class="signup" v-if="$route.name === 'login'"><router-link to="/signup" class="add-items">Signup</router-link>
+        </p>
     </div>
 </template>
 <script>
@@ -28,17 +33,16 @@ export default {
         return {
             searchQuery: '',
             products: [],
-            filteredData: []
+            filteredData: [],
+            showDiv: false
         }
     },
     methods: {
         logout() {
             localStorage.clear();
         },
-        handleButton(newQuery) {
-            this.filteredData = this.products.filter(product => {
-                return product.name.toLowerCase().includes(newQuery.toLowerCase());
-            });
+        handleButton() {
+            this.filteredData = this.products
         },
         navigateToProduct(name) {
             this.$emit('search', name)
@@ -128,7 +132,7 @@ export default {
     margin: 0 auto;
     background-color: white;
     box-shadow: 5px 6px 10px #221e1e;
-    position: absolute;
+    position: fixed;
     top: 65px;
 }
 
