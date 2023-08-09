@@ -11,7 +11,7 @@
                 <span class="product-name">Name : &nbsp; {{ item.name }}</span>
                 <span class="product-details">Details : &nbsp; {{ item.details }}</span>
                 <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price }}</span>
-                <button class="btn"><router-link :to="'/user/' + item.id">User-Info</router-link></button>
+                <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
             </div>
         </div>
     </div>
@@ -79,9 +79,8 @@ export default {
 </script>
 <style>
 .grid {
-    display: grid;
+    display: flex;
     width: 100%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     overflow: hidden;
     justify-items: center;
 }

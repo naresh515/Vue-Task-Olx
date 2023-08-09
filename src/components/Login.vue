@@ -1,12 +1,12 @@
 <template>
     <h1>Login Page</h1>
     <div class="form">
-        <div>
+        <div class="login">
             <label class="name">Email Address : &nbsp;</label>
             <input name="email" type="text" placeholder="Enter Your Email" v-model="email">
             <p class="errors">{{ EmailError }}</p>
         </div>
-        <div>
+        <div class="login">
             <label class="name">password : &nbsp;</label>
             <input name="password" type="password" placeholder="Enter Your password" v-model="password">
             <p class="errors">{{ PasswordError }}</p>
@@ -68,9 +68,9 @@ h1 {
     width: 500px;
     margin: 0 auto;
     max-width: 100%;
-    background-color: #666666;
+    background-color: white;
     border-radius: 4px;
-    box-shadow: 5px 6px 10px #221e1e;
+    box-shadow: 5px 6px 10px #5f5f5f;
 }
 
 div {
@@ -78,7 +78,7 @@ div {
 }
 
 .name {
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 15px;
     text-transform: uppercase;
@@ -120,5 +120,12 @@ input {
 .errors {
     color: red;
     text-transform: capitalize;
+}
+
+.login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: start;
 }
 </style>

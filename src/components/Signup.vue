@@ -1,28 +1,28 @@
 <template>
     <h1>Signup Page</h1>
     <div class="form">
-        <div>
+        <div class="login">
             <label class="name">Fullname : &nbsp;</label>
             <input name="fullname" type="text" placeholder="Enter Your Full Name" v-model="fullname" required>
             <p class="errors">{{ FullnameError }}</p>
         </div>
-        <div>
+        <div class="login">
             <label class="name">Email Address : &nbsp;</label>
             <input name="email" type="text" placeholder="Enter Your Email" v-model="email" required>
             <p class="errors">{{ EmailError }}</p>
         </div>
-        <div>
+        <div class="login">
             <label class="name">Mobile Number : &nbsp;</label>
             <input type="number" placeholder="Mobile No." name="mobile" v-model="mobile" required>
             <p class="errors">{{ MobileNumberError }}</p>
 
         </div>
-        <div>
+        <div class="login">
             <label class="name">password : &nbsp;</label>
             <input name="password" type="password" placeholder="Enter Your password" v-model="password" required>
             <p class="errors">{{ PasswordError }}</p>
         </div>
-        <div>
+        <div class="login">
             <label class="name">Address : &nbsp;</label>
             <input name="Address" type="text" placeholder="Enter Your Address" v-model="Address" required>
         </div>
@@ -100,8 +100,9 @@ h1 {
     width: 500px;
     margin: 0 auto;
     max-width: 100%;
-    background-color: #666666;
+    background-color: white;
     border-radius: 4px;
+    box-shadow: 5px 6px 10px #5f5f5f;
 }
 
 div {
@@ -109,7 +110,7 @@ div {
 }
 
 .name {
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 15px;
     text-transform: uppercase;
@@ -151,5 +152,12 @@ input {
 .errors {
     color: red;
     text-transform: capitalize;
+}
+
+.login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: start;
 }
 </style>
