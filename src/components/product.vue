@@ -6,11 +6,24 @@
                     Details</router-link></button>
         </div>
         <div class="container grid">
-            <div class="img-container first" v-for="item in filterProduct" :key="item.name">
+            <Carousel v-if="filterProduct.length >= 5" :autoplay="true" :loop="true">
+                <Slide :key="name" :autoplay="true">
+                    <div class="img-container first" v-for="item in filterProduct" :key="item.name">
+                        <img class="imgs" :src="item.photo">
+                        <span class="product-name">Name : &nbsp; {{ item.name }}</span>
+                        <span class="product-details">Details : &nbsp; {{ item.details }}</span>
+                        <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price
+                        }}</span>
+                        <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
+                    </div>
+                </Slide>
+            </Carousel>
+            <div class="img-container first" v-else v-for="item in filterProduct" :key="item.name">
                 <img class="imgs" :src="item.photo">
                 <span class="product-name">Name : &nbsp; {{ item.name }}</span>
                 <span class="product-details">Details : &nbsp; {{ item.details }}</span>
-                <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price }}</span>
+                <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price
+                }}</span>
                 <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
             </div>
         </div>
@@ -19,12 +32,18 @@
 
 <script>
 import axios from "axios";
+import { Carousel, Slide } from 'vue3-carousel'
+
 export default {
     name: "product",
+    components: {
+        Carousel,
+        Slide,
+    },
     data() {
         return {
             Product: [],
-            searchQuery: ''
+            searchQuery: '',
         }
     },
     props: {
@@ -175,5 +194,19 @@ span {
     border: 1px solid #cfcfcf;
     margin: 10px;
     border-radius: 10px;
+}
+
+li.carousel__slide.carousel__slide--visible.carousel__slide--active {
+    display: flex;
+    overflow: hidden;
+}
+
+.carousel__liveregion.carousel__sr-only {
+    display: none;
+}
+
+ol.carousel__track {
+    margin: 0px !important;
+    padding: 0px;
 }
 </style>

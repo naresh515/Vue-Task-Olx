@@ -16,12 +16,13 @@
 
             <td class="actions">
                 <router-link :to="'/update/' + item.id">Update</router-link> &nbsp;/ &nbsp;
-                <button v-on:click="deleteRestro(item.id)" class="action-btn">Delete</button>
+                <button type="submit" v-on:click="deleteRestro(item.id)" class="action-btn">Delete</button>
             </td>
         </tr>
     </table>
 </template>
 <script>
+import axios from 'axios';
 export default {
     name: 'myProduct',
     data() {
@@ -37,6 +38,14 @@ export default {
             }
         }
     },
+    methods: {
+        async deleteRestro(id) {
+            let result = await axios.delete("http://localhost:3000/Product/" + id)
+            if (result.status == 200) {
+                this.$router.push({ name: 'Home' })
+            }
+        },
+    }
 }
 </script>
 <style>
