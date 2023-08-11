@@ -2,11 +2,12 @@
     <div class="sale-container product" v-if="filterProduct.length > 0">
         <div class="top-container" v-if="obj.key">
             <h1>{{ obj.title }}</h1>
-            <button type="button" class="button"><router-link :to="'/products/' + obj.key">More
-                    Details</router-link></button>
+            <button type="button" class="button">
+                <router-link :to="'/products/' + obj.key">More Details</router-link>
+            </button>
         </div>
         <div class="container grid">
-            <!-- <Carousel v-if="filterProduct.length >= 6" :setting="settings">
+            <Carousel v-if="filterProduct.length >= 6" :setting="settings">
                 <Slide :key="name">
                     <div class="img-container first" v-for="item in filterProduct" :key="item.name">
                         <img class="imgs" :src="item.photo">
@@ -17,14 +18,16 @@
                         <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
                     </div>
                 </Slide>
-            </Carousel> -->
-            <div class="img-container first" v-for="item in filterProduct" :key="item.name">
-                <img class="imgs" :src="item.photo">
+            </Carousel>
+            <div class="img-container first" v-else v-for="item in filterProduct" :key="item.name">
+                <img class="imgs" :src="item.photo" />
                 <span class="product-name">Name : &nbsp; {{ item.name }}</span>
                 <span class="product-details">Details : &nbsp; {{ item.details }}</span>
-                <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price
-                }}</span>
-                <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
+                <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp;
+                    {{ item.price }}</span>
+                <button class="btn">
+                    <router-link :to="'/user/' + item.id">Buy</router-link>
+                </button>
             </div>
         </div>
     </div>
@@ -32,7 +35,7 @@
 
 <script>
 import axios from "axios";
-import { Carousel, Slide } from 'vue3-carousel'
+import { Carousel, Slide } from "vue3-carousel";
 
 export default {
     name: "product",
@@ -43,36 +46,37 @@ export default {
     data() {
         return {
             Product: [],
-            searchQuery: '',
+            searchQuery: "",
             settings: {
-                "autoplay": true,
-                "infinite": true
-            }
-        }
+                autoplay: true,
+                infinite: true,
+            },
+        };
     },
     props: {
         id: {
             type: String,
             default: () => {
                 return "";
-            }
+            },
         },
         obj: {
             type: Object,
             default: () => {
-                return {}
-            }
-        }
+                return {};
+            },
+        },
     },
     methods: {
         getdata(id) {
-            axios.get("http://localhost:3000/Product")
-                .then(response => {
-                    let dataSale = response.data.filter((x) => x.option == id)
+            axios
+                .get("http://localhost:3000/Product")
+                .then((response) => {
+                    let dataSale = response.data.filter((x) => x.option == id);
                     this.Product = dataSale;
                 })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
                 });
         },
         handleSearchQueryChange(searchQuery) {
@@ -80,25 +84,26 @@ export default {
         },
     },
     mounted() {
-        this.getdata(this.id)
-
+        this.getdata(this.id);
     },
     computed: {
         filterProduct() {
-            return this.Product.filter(product => {
-                return product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-            })
-        }
+            return this.Product.filter((product) => {
+                return product.name
+                    .toLowerCase()
+                    .includes(this.searchQuery.toLowerCase());
+            });
+        },
     },
     created() {
         this.handleSearchQueryChange(this.$route.query.search || "");
     },
     watch: {
-        '$route.query.search'(newSearchQuery) {
+        "$route.query.search"(newSearchQuery) {
             this.handleSearchQueryChange(newSearchQuery);
-        }
+        },
     },
-}
+};
 </script>
 <style>
 .grid {
@@ -136,12 +141,12 @@ export default {
     border: none;
     outline: linen;
     font-size: 15px;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
 .btn:hover {
     background-color: skyblue;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
 .last {
@@ -174,7 +179,7 @@ span {
     background-color: skyblue;
     border-radius: 5px;
     padding: 10px 15px;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     cursor: pointer;
 }
 
@@ -185,7 +190,7 @@ span {
 
 .button:hover {
     background-color: black;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .top-container {
