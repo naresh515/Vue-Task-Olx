@@ -31,7 +31,8 @@ export default {
     methods: {
         getdata() {
             let result = JSON.parse(localStorage.getItem("user-info"));
-            this.store = result
+            console.log(result[0])
+            this.store = result[0]
         },
         async products() {
             let dataProduct = await axios.get(`http://localhost:3000/Product?email=${this.store.email}`)
@@ -90,9 +91,5 @@ export default {
     background-color: white;
     color: #4e99a2;
     transition: all .5s ease-in-out;
-}
-
-.details {
-    margin: 0 auto;
 }
 </style>

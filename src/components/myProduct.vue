@@ -71,7 +71,8 @@ export default {
 }
 
 table {
-    margin: 50px auto 0px;
+    margin-left: 20px;
+    width: 100%;
 }
 
 .heading {

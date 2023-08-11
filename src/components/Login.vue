@@ -3,58 +3,63 @@
     <div class="form">
         <div class="login">
             <label class="name">Email Address : &nbsp;</label>
-            <input name="email" type="text" placeholder="Enter Your Email" v-model="email">
+            <input name="email" type="text" placeholder="Enter Your Email" v-model="email" />
             <p class="errors">{{ EmailError }}</p>
         </div>
         <div class="login">
             <label class="name">password : &nbsp;</label>
-            <input name="password" type="password" placeholder="Enter Your password" v-model="password">
+            <input name="password" type="password" placeholder="Enter Your password" v-model="password" />
             <p class="errors">{{ PasswordError }}</p>
         </div>
-        <button v-on:click="login()" class="btn">Login</button>
+        <div class="err">
+            <p class="errors">{{ allerror }}</p>
+        </div>
+        <button v-on:click="login()" class="btn" type="submit">Login</button>
     </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
     name: "login",
     data() {
         return {
-            email: '',
-            password: '',
-            EmailError: '',
-            PasswordError: ''
-        }
+            email: "",
+            password: "",
+            EmailError: "",
+            PasswordError: "",
+            allerror: "",
+        };
     },
     methods: {
         async login() {
-            this.EmailError = ''
-            this.PasswordError = ''
-            let result = await axios.get(
-                `http://localhost:3000/users`
-            );
-            if (this.email == '' || this.email != result.data[0].email) {
-
-                this.EmailError = 'Invalid Email'
-
-            } else if (this.password == '' || this.password != result.data[0].password) {
-
-                this.PasswordError = 'Invalid Password'
-
-            } else {
-                console.log(result)
-                console.log(result.data[0].password)
-                console.log(result.data[0].email)
-                if (result.status == 200 && result.data.length > 0) {
-                    localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-                    this.$router.push({ name: 'Home' });
-                }
+            this.EmailError = "";
+            this.PasswordError = "";
+            this.allerror = "";
+            if (this.email == "") {
+                this.EmailError = "Invalid Email";
             }
-        }
-    }
-}
-</script>
 
+            if (this.password == "") {
+                this.PasswordError = "Invalid Password";
+            }
+
+            try {
+                let result = await axios.get(
+                    `http://localhost:3000/users?email=${this.email}&password=${this.password}`
+                );
+                if (result.status == 200 && result.data.length > 0) {
+                    localStorage.setItem("user-info", JSON.stringify(result.data));
+                    this.$router.push({ name: "Home" });
+                } else {
+                    this.allerror = "Invalid Details";
+                }
+            } catch {
+                console.log(error);
+            }
+        },
+    },
+};
+</script>
 
 <style scoped>
 h1 {
@@ -97,7 +102,7 @@ input {
     font-size: 15px;
     background: #0000ff7a;
     color: white;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     border-radius: 12px;
     font-weight: bold;
 }
@@ -105,7 +110,7 @@ input {
 .btn:hover {
     color: black;
     background-color: white;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .log {

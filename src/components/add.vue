@@ -43,11 +43,17 @@ export default {
             }
         },
         async add() {
+            const datastore = JSON.parse(localStorage.getItem("user-info"))
+            var userInfo = datastore[0];
+            var fullname = userInfo.fullname;
+            var email = userInfo.email
+            var mobile = userInfo.mobile
+            var Address = userInfo.Address
             const result = await axios.post("http://localhost:3000/Product", {
-                Uname: JSON.parse(localStorage.getItem("user-info")).fullname,
-                email: JSON.parse(localStorage.getItem("user-info")).email,
-                mobile: JSON.parse(localStorage.getItem("user-info")).mobile,
-                Address: JSON.parse(localStorage.getItem("user-info")).Address,
+                Uname: fullname,
+                email: email,
+                mobile: mobile,
+                Address: Address,
                 name: this.Product.name,
                 details: this.Product.details,
                 price: this.Product.price,

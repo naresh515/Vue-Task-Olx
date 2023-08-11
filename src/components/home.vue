@@ -35,4 +35,10 @@ export default {
 }
 </script>
 
+<style scoped>
+.items {
+    margin-bottom: 30px;
+}
+</style>
+
 

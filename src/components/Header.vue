@@ -1,11 +1,6 @@
 <template>
     <div class="nav">
         <router-link to="/"><i class="fa-solid fa-house"></i> Home</router-link>
-        <router-link to="/add" class="add-items" v-if="$route.name !== 'login' && $route.name !== 'signup'"><i
-                class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
-        <div class="userDetails" v-if="$route.name !== 'login' && $route.name !== 'signup'">
-            <p><router-link to="/deshboard" class="add-items">Profile</router-link></p>
-        </div>
         <div class="nav-bar" @click="showDiv = true" v-if="$route.name !== 'login' && $route.name !== 'signup'">
             <input type="text" class="search-box" placeholder="Find Cars, Mobile Phones and more..." v-model="searchQuery"
                 ref="showDivBar" />
@@ -18,8 +13,20 @@
                 </div>
             </div>
         </div>
-        <a href="#" v-on:click="logout()" class="add-items"
-            v-if="$route.name !== 'login' && $route.name !== 'signup'">Logout</a>
+        <div class="toggle-icon" v-if="$route.name !== 'login' && $route.name !== 'signup'">
+            <button @click="toggle" class="bt">{{ firstLatter }}</button>
+            <div v-if="active" class="icons">
+                <div class="userDetails">
+                    <router-link to="/add" class="add-items"><i class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
+                </div>
+                <div class="userDetails">
+                    <p><router-link to="/deshboard" class="add-items">Profile</router-link></p>
+                </div>
+                <div class="userDetails">
+                    <a href="#" v-on:click="logout()" class="add-items">Logout</a>
+                </div>
+            </div>
+        </div>
         <p v-if="$route.name === 'signup'"><router-link to="/login" class="add-items">Login</router-link></p>
         <p v-if="$route.name === 'login'"><router-link to="/signup" class="add-items">Signup</router-link></p>
     </div>
@@ -33,7 +40,8 @@ export default {
             searchQuery: '',
             products: [],
             filteredData: [],
-            showDiv: false
+            showDiv: false,
+            active: false
         }
     },
     methods: {
@@ -52,6 +60,9 @@ export default {
             if (searchBar && searchResult && !searchBar.contains(event.target) && !searchResult.contains(event.target)) {
                 this.showDiv = false
             }
+        },
+        toggle() {
+            this.active = !this.active
         }
     },
     mounted() {
@@ -74,6 +85,15 @@ export default {
             console.log(this.filteredData);
         }
     },
+    computed: {
+        firstLatter() {
+            const userInfo = JSON.parse(localStorage.getItem("user-info"));
+            var datastore = userInfo[0];
+            var fullname = datastore.fullname;
+            console.log(fullname)
+            return datastore.fullname.slice(0, 1)
+        }
+    }
 }
 </script> 
 
@@ -177,5 +197,41 @@ export default {
 
 .add-items {
     font-size: 15px !important;
+}
+
+.toggle-icon {
+    position: relative;
+}
+
+.icons {
+    position: fixed;
+    background: #333;
+    right: 0px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.icons a {
+    padding: 10px;
+    margin: 0px;
+}
+
+.userDetails {
+    margin: 10px;
+}
+
+.bt {
+    margin-right: 30px;
+    cursor: pointer;
+    text-transform: capitalize;
+    background: #db7a84;
+    color: white;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    height: 32px;
+    width: 32px;
 }
 </style>

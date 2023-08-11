@@ -2,8 +2,9 @@
     <div class="container">
         <div class="img-container first">
             <img class="imgs" :src="Product.photo">
-            <input class="file-input" ref="fileInput" type="file" @change="handleImageSelect">
-
+            <span class="cont">
+                <input class="file-input" ref="fileInput" type="file" @change="handleImageSelect">
+            </span>
             <span class="product-name">Name: &nbsp; <input type="text" placeholder="Product Name" name="name"
                     v-model="Product.name" />
             </span>
@@ -19,7 +20,9 @@
                 <option value="services">Services</option>
                 <option value="accessories">accessories</option>
             </select>
-            <button type="button" v-on:click="update()">Update Product</button>
+            <span>
+                <button type="button" v-on:click="update()" class="btn">Update Product</button>
+            </span>
         </div>
     </div>
 </template>
@@ -72,3 +75,32 @@ export default {
     }
 }
 </script>
+<style scoped>
+.first {
+    margin: 0 auto;
+}
+
+.product-details,
+.product-name {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.selected {
+    width: 80%;
+    height: 30px;
+}
+
+.btn {
+    border: none;
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.imgs{
+    margin-bottom: 15px;
+}
+</style>

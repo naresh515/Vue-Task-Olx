@@ -6,8 +6,8 @@
                     Details</router-link></button>
         </div>
         <div class="container grid">
-            <Carousel v-if="filterProduct.length >= 5" :autoplay="true" :loop="true">
-                <Slide :key="name" :autoplay="true">
+            <!-- <Carousel v-if="filterProduct.length >= 6" :setting="settings">
+                <Slide :key="name">
                     <div class="img-container first" v-for="item in filterProduct" :key="item.name">
                         <img class="imgs" :src="item.photo">
                         <span class="product-name">Name : &nbsp; {{ item.name }}</span>
@@ -17,8 +17,8 @@
                         <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
                     </div>
                 </Slide>
-            </Carousel>
-            <div class="img-container first" v-else v-for="item in filterProduct" :key="item.name">
+            </Carousel> -->
+            <div class="img-container first" v-for="item in filterProduct" :key="item.name">
                 <img class="imgs" :src="item.photo">
                 <span class="product-name">Name : &nbsp; {{ item.name }}</span>
                 <span class="product-details">Details : &nbsp; {{ item.details }}</span>
@@ -44,6 +44,10 @@ export default {
         return {
             Product: [],
             searchQuery: '',
+            settings: {
+                "autoplay": true,
+                "infinite": true
+            }
         }
     },
     props: {
@@ -208,5 +212,27 @@ li.carousel__slide.carousel__slide--visible.carousel__slide--active {
 ol.carousel__track {
     margin: 0px !important;
     padding: 0px;
+}
+
+.carousel__item {
+    min-height: 200px;
+    width: 100%;
+    background-color: var(--vc-clr-primary);
+    color: var(--vc-clr-white);
+    font-size: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel__slide {
+    padding: 10px;
+}
+
+.carousel__prev,
+.carousel__next {
+    box-sizing: content-box;
+    border: 5px solid white;
 }
 </style>
