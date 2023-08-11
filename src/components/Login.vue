@@ -56,6 +56,7 @@ export default {
             } catch {
                 console.log(error);
             }
+            window.location.reload()
         },
     },
 };
