@@ -234,4 +234,14 @@ export default {
     height: 32px;
     width: 32px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .nav-bar {
+        display: none;
+    }
+
+    .nav a[data-v-c970699f] {
+        font-size: 15px;
+    }
+}
 </style>

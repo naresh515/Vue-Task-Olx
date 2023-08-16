@@ -77,7 +77,7 @@ export default {
 </script>
 <style scoped>
 .first {
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .product-details,
@@ -102,5 +102,8 @@ export default {
 }
 .imgs{
     margin-bottom: 15px;
+}
+@media screen and (min-width: 320px) and (max-width: 800px){
+
 }
 </style>

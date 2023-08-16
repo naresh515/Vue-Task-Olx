@@ -92,4 +92,15 @@ export default {
     color: #4e99a2;
     transition: all .5s ease-in-out;
 }
+
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .container[data-v-dbefb4f4]{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    table{
+        margin: 0 auto;
+    }
+}
 </style>

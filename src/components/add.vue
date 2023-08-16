@@ -109,4 +109,12 @@ h1 {
     color: #fff;
     margin: 0px auto;
 }
+@media screen and (min-width: 320px) and (max-width: 800px) {
+.input-fileds{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+}
 </style>

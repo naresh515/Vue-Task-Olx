@@ -7,19 +7,17 @@
             </button>
         </div>
         <div class="container grid">
-            <Carousel v-if="filterProduct.length >= 6" :setting="settings">
-                <Slide :key="name">
-                    <div class="img-container first" v-for="item in filterProduct" :key="item.name">
-                        <img class="imgs" :src="item.photo">
-                        <span class="product-name">Name : &nbsp; {{ item.name }}</span>
-                        <span class="product-details">Details : &nbsp; {{ item.details }}</span>
-                        <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price
-                        }}</span>
-                        <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
-                    </div>
-                </Slide>
-            </Carousel>
-            <div class="img-container first" v-else v-for="item in filterProduct" :key="item.name">
+            <VueAIcarousel :Property="{ ID: 'Unique_id', Dlay: 1000 }" v-if="filterProduct.length >= 5" class="flow">
+                <div class="img-container first" v-for="item in filterProduct" :key="item.name">
+                    <img class="imgs" :src="item.photo">
+                    <span class="product-name">Name : &nbsp; {{ item.name }}</span>
+                    <span class="product-details">Details : &nbsp; {{ item.details }}</span>
+                    <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price
+                    }}</span>
+                    <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
+                </div>
+            </VueAIcarousel>
+            <div class="img-container first flow" v-else v-for="item in filterProduct" :key="item.name">
                 <img class="imgs" :src="item.photo" />
                 <span class="product-name">Name : &nbsp; {{ item.name }}</span>
                 <span class="product-details">Details : &nbsp; {{ item.details }}</span>
@@ -35,13 +33,12 @@
 
 <script>
 import axios from "axios";
-import { Carousel, Slide } from "vue3-carousel";
+import VueAIcarousel from "vue-ai-carousel"
 
 export default {
     name: "product",
     components: {
-        Carousel,
-        Slide,
+        VueAIcarousel
     },
     data() {
         return {
@@ -110,6 +107,13 @@ export default {
     display: flex;
     width: 100%;
     overflow: hidden;
+}
+
+.flow {
+
+    display: flex;
+    width: 100%;
+    overflow: hidden;
     justify-items: center;
 }
 
@@ -123,12 +127,15 @@ export default {
 .img-container {
     display: flex;
     flex-direction: column;
-    width: 320px;
+    width: 320px !important;
     justify-content: center;
     align-items: center;
     border: 1px solid #cac0c0;
-    border-radius: 4px;
+    border-radius: 4px !important;
     margin: 15px 0px;
+    height: auto !important;
+    color: unset !important;
+    background-color: unset !important;
 }
 
 .btn {
@@ -158,7 +165,7 @@ export default {
 }
 
 .first {
-    margin-left: 15px;
+    margin-left: 15px !important;
 }
 
 span {
@@ -205,39 +212,43 @@ span {
     border-radius: 10px;
 }
 
-li.carousel__slide.carousel__slide--visible.carousel__slide--active {
-    display: flex;
-    overflow: hidden;
+.lC3oC2kE3bD2fB1jC2qB4eF1v div {
+    margin: auto !important;
+    margin-bottom: 15px !important;
+    margin-left: 15px !important;
 }
 
-.carousel__liveregion.carousel__sr-only {
-    display: none;
+.vR2lC1dN2bD1xN1vB3rD1hF1d {
+    transform: translateX(0px) !important;
 }
 
-ol.carousel__track {
-    margin: 0px !important;
-    padding: 0px;
+.countDefaultpos {
+    display: none !important;
 }
 
-.carousel__item {
-    min-height: 200px;
-    width: 100%;
-    background-color: var(--vc-clr-primary);
-    color: var(--vc-clr-white);
-    font-size: 20px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.PeVNCommon {
+    background-color: transparent !important;
 }
 
-.carousel__slide {
-    padding: 10px;
-}
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .top-container {
+        margin: 10px;
+    }
 
-.carousel__prev,
-.carousel__next {
-    box-sizing: content-box;
-    border: 5px solid white;
+    h1 {
+        font-size: 17px;
+    }
+
+    .grid {
+        flex-direction: column;
+    }
+
+    .img-container {
+        width: 100% !important;
+    }
+
+    .first {
+        margin-left: 0px !important;
+    }
 }
 </style>

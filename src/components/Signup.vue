@@ -160,4 +160,18 @@ input {
     align-items: center;
     justify-items: start;
 }
+
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .login{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
 </style>

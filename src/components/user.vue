@@ -42,4 +42,12 @@ export default {
     justify-content: center;
     align-items: center;
 }
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .first{
+        margin-left: 0px !important;
+    }
+    .img-container{
+        width: 90% !important;
+    }
+}
 </style>

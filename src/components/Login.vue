@@ -134,4 +134,18 @@ input {
     align-items: center;
     justify-items: start;
 }
+
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .login[data-v-47199182] {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form[data-v-47199182] {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+}
 </style>
