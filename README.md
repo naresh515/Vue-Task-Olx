@@ -28,10 +28,6 @@ npm run dev
 npm run build
 ```
 
-# Vue-js-Task
-
-# Vue-Task-Olx
-
 # Vue-Task-Olx
 
 /_ you need to use json api for this task after use json api you need to run it there was two types of api link first was users and second was product you need to make both api name inside your db.json file which was created automatically when you use json api. You have to run this api with the Classfied folder for run this db.json file you need to write json-server --watch db.json inside you terminal_/
