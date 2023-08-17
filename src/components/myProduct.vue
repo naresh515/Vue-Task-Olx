@@ -145,7 +145,7 @@ tr:nth-child(even) {
 
     .imgs {
         width: 150px;
-        height: auto;
+        height: 100px;
     }
 }
 </style>

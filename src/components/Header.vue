@@ -213,7 +213,8 @@ export default {
     position: fixed;
     background: #333;
     right: 24px;
-    border-radius: 4px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     width: 150px;
     text-align: center;
     top: 55px;
@@ -254,6 +255,10 @@ export default {
 
     .nav a[data-v-c970699f] {
         font-size: 15px;
+    }
+
+    .icons {
+        right: 0;
     }
 }
 </style>

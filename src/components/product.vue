@@ -20,7 +20,7 @@
                     <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
                 </div>
             </VueAIcarousel>
-            <div class="img-container first flow" v-else v-for="item in filterProduct" :key="item.name">
+            <div class="img-container first flow1" v-else v-for="item in filterProduct" :key="item.name">
                 <img class="imgs" :src="item.photo" />
                 <span class="product-name">Name : &nbsp; <p>{{ item.name }}</p></span>
                 <span class="product-details">Details : &nbsp; <p> {{ item.details }}</p> </span>
@@ -260,11 +260,23 @@ span {
     }
 
     .img-container {
-        width: 100% !important;
+        width: 300px !important;
+        margin: 0 auto;
     }
 
     .first {
         margin-left: 0px !important;
+    }
+
+    .product-name,
+    .product-details,
+    .product-price {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .flow1 {
+        margin-bottom: 20px;
     }
 }
 </style>
