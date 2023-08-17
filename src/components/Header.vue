@@ -13,9 +13,9 @@
                 </div>
             </div>
         </div>
-        <div class="toggle-icon" v-if="$route.name !== 'login' && $route.name !== 'signup'">
-            <button @click="toggle" class="bt">{{ firstLatter }}</button>
-            <div v-if="active" class="icons">
+        <div class="toggle-icon" v-if="$route.name !== 'login' && $route.name !== 'signup'" @click="showDiv1 = true">
+            <button class="bt" ref="showDivBar1">{{ firstLatter }}</button>
+            <div class="icons" v-show="showDiv1" ref="showDivResult1">
                 <div class="userDetails">
                     <router-link to="/add" class="add-items"><i class="fa-solid fa-plus"></i> &nbsp; Add item</router-link>
                 </div>
@@ -41,7 +41,7 @@ export default {
             products: [],
             filteredData: [],
             showDiv: false,
-            active: false
+            showDiv1: false,
         }
     },
     methods: {
@@ -60,9 +60,11 @@ export default {
             if (searchBar && searchResult && !searchBar.contains(event.target) && !searchResult.contains(event.target)) {
                 this.showDiv = false
             }
-        },
-        toggle() {
-            this.active = !this.active
+            const searchBar1 = this.$refs.showDivBar1
+            const searchResult1 = this.$refs.showDivResult1
+            if (searchBar1 && searchResult1 && !searchBar1.contains(event.target) && !searchResult1.contains(event.target)) {
+                this.showDiv1 = false
+            }
         }
     },
     mounted() {
@@ -156,7 +158,7 @@ export default {
 .searchBar-result {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     width: 400px;
     margin: 0 auto;
@@ -164,6 +166,8 @@ export default {
     box-shadow: 5px 6px 10px #221e1e;
     position: fixed;
     top: 65px;
+    max-height: 355px;
+    overflow-y: scroll;
 }
 
 .searchBar-result button {
@@ -186,13 +190,15 @@ export default {
 }
 
 .items {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
     align-items: center;
     width: 100%;
     border-bottom: 1px solid #cac0c0;
     padding: 10px 0px;
     cursor: pointer;
+    grid-template-columns: 20% 60%;
+    justify-items: center;
+    justify-content: center
 }
 
 .add-items {
@@ -206,18 +212,24 @@ export default {
 .icons {
     position: fixed;
     background: #333;
-    right: 0px;
-    padding: 20px;
-    border-radius: 10px;
+    right: 24px;
+    border-radius: 4px;
+    width: 150px;
+    text-align: center;
+    top: 55px;
 }
 
 .icons a {
-    padding: 10px;
+    padding: 10px 0px;
     margin: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .userDetails {
-    margin: 10px;
+    margin: 10px 0px 0px;
 }
 
 .bt {

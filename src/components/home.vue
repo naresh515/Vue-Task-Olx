@@ -37,7 +37,8 @@ export default {
 
 <style scoped>
 .items {
-    margin-bottom: 30px;
+    width: 98%;
+    margin: 30px auto 0px;
 }
 </style>
 

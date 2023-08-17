@@ -7,22 +7,27 @@
             </button>
         </div>
         <div class="container grid">
-            <VueAIcarousel :Property="{ ID: 'Unique_id', Dlay: 1000 }" v-if="filterProduct.length >= 5" class="flow">
+            <VueAIcarousel :Property="{ ID: 'Unique_id_' + obj.key, Dlay: 1000 }" v-if="filterProduct.length >= 5"
+                class="flow">
                 <div class="img-container first" v-for="item in filterProduct" :key="item.name">
                     <img class="imgs" :src="item.photo">
-                    <span class="product-name">Name : &nbsp; {{ item.name }}</span>
-                    <span class="product-details">Details : &nbsp; {{ item.details }}</span>
-                    <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp; {{ item.price
-                    }}</span>
+                    <span class="product-name">Name : &nbsp; <p>{{ item.name }}</p></span>
+                    <span class="product-details">Details : &nbsp; <p> {{ item.details }}</p></span>
+                    <span class="product-price">
+                        <p><i class="fa-solid fa-indian-rupee-sign"></i>&nbsp; :</p> &nbsp; {{ item.price
+                        }}
+                    </span>
                     <button class="btn"><router-link :to="'/user/' + item.id">Buy</router-link></button>
                 </div>
             </VueAIcarousel>
             <div class="img-container first flow" v-else v-for="item in filterProduct" :key="item.name">
                 <img class="imgs" :src="item.photo" />
-                <span class="product-name">Name : &nbsp; {{ item.name }}</span>
-                <span class="product-details">Details : &nbsp; {{ item.details }}</span>
-                <span class="product-price"><i class="fa-solid fa-indian-rupee-sign"></i> : &nbsp;
-                    {{ item.price }}</span>
+                <span class="product-name">Name : &nbsp; <p>{{ item.name }}</p></span>
+                <span class="product-details">Details : &nbsp; <p> {{ item.details }}</p> </span>
+                <span class="product-price">
+                    <p><i class="fa-solid fa-indian-rupee-sign"></i>&nbsp; :</p> &nbsp;
+                    {{ item.price }}
+                </span>
                 <button class="btn">
                     <router-link :to="'/user/' + item.id">Buy</router-link>
                 </button>
@@ -105,7 +110,8 @@ export default {
 <style>
 .grid {
     display: flex;
-    width: 100%;
+    width: 99%;
+    max-width: 100%;
     overflow: hidden;
 }
 
@@ -121,7 +127,7 @@ export default {
     width: 250px;
     height: 170px;
     object-fit: cover;
-    margin: 15px 0px 0px;
+    margin: 15px 0px;
 }
 
 .img-container {
@@ -228,6 +234,16 @@ span {
 
 .PeVNCommon {
     background-color: transparent !important;
+}
+
+.product-name,
+.product-details,
+.product-price {
+    display: grid;
+    grid-template-columns: 20% 60%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 @media screen and (min-width: 320px) and (max-width: 800px) {

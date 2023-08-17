@@ -1,25 +1,27 @@
 <template>
-    <table border="1px">
-        <tr>
-            <td class="heading">Image</td>
-            <td class="heading">product-name</td>
-            <td class="heading">product-details</td>
-            <td class="heading">product-price</td>
-            <td class="heading">Actions</td>
-        </tr>
+    <div class="content">
+        <table>
+            <tr>
+                <td class="heading">Image</td>
+                <td class="heading">product-name</td>
+                <td class="heading">product-details</td>
+                <td class="heading">product-price</td>
+                <td class="heading">Actions</td>
+            </tr>
 
-        <tr v-for="item in product">
-            <td class="text"> <img class="imgs" :src="item.photo"></td>
-            <td class="text">{{ item.name }}</td>
-            <td class="text">{{ item.details }}</td>
-            <td class="text">{{ item.price }}</td>
+            <tr v-for="item in product">
+                <td class="text"> <img class="imgs" :src="item.photo"></td>
+                <td class="text">{{ item.name }}</td>
+                <td class="text">{{ item.details }}</td>
+                <td class="text">{{ item.price }}</td>
 
-            <td class="actions">
-                <router-link :to="'/update/' + item.id">Update</router-link> &nbsp;/ &nbsp;
-                <button type="submit" v-on:click="deleteRestro(item.id)" class="action-btn">Delete</button>
-            </td>
-        </tr>
-    </table>
+                <td class="actions">
+                    <router-link :to="'/update/' + item.id">Update</router-link> &nbsp;/ &nbsp;
+                    <button type="submit" v-on:click="deleteRestro(item.id)" class="action-btn">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </template>
 <script>
 import axios from 'axios';
@@ -49,6 +51,10 @@ export default {
 }
 </script>
 <style>
+.content {
+    margin-top: 65px;
+}
+
 .cards {
     width: 350px;
     max-width: 100%;
@@ -119,5 +125,27 @@ table {
 
 .actions a:hover {
     background-color: unset;
+}
+
+table {
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+@media screen and (min-width: 320px) and (max-width: 800px) {
+    .content {
+        width: 100%;
+        overflow-x: auto;
+        margin: 0 auto;
+    }
+
+    .imgs {
+        width: 150px;
+        height: auto;
+    }
 }
 </style>

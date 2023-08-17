@@ -1,9 +1,13 @@
 <template>
     <div class="cards">
-        <div class="userName user">Name: &nbsp; {{ store.fullname }}</div>
-        <div class="userEmail user">Email: &nbsp; {{ store.email }}</div>
-        <div class="userMobile user">Mobile: &nbsp; {{ store.mobile }}</div>
-        <div class="userAddress user">Address: &nbsp; {{ store.Address }}</div>
+        <div class="userName user">Name: &nbsp; <p>{{ store.fullname }}</p>
+        </div>
+        <div class="userEmail user">Email: &nbsp;<p> {{ store.email }}</p>
+        </div>
+        <div class="userMobile user">Mobile: &nbsp; <p>{{ store.mobile }}</p>
+        </div>
+        <div class="userAddress user">Address: &nbsp;<p>{{ store.Address }}</p>
+        </div>
     </div>
 </template>
 
@@ -28,6 +32,12 @@ export default {
 </script>
 <style scoped>
 .cards {
-    margin: 0px 20px;
+    margin: 10px 20px 0px;
+}
+
+.user {
+    display: grid;
+    grid-template-columns: 20% 60%;
+    justify-content: center;
 }
 </style>

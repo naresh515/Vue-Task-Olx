@@ -58,8 +58,9 @@ export default {
 
 <style scoped>
 .container {
-    width: 100%;
+    width: 98%;
     display: flex;
+    margin: 20px auto 0px;
 }
 
 .tab-btn {
@@ -94,13 +95,23 @@ export default {
 }
 
 @media screen and (min-width: 320px) and (max-width: 800px) {
-    .container[data-v-dbefb4f4]{
+    .container[data-v-dbefb4f4] {
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    table{
+
+    table {
         margin: 0 auto;
+    }
+
+    .cards {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .details {
+        width: 100%;
     }
 }
 </style>

@@ -73,7 +73,8 @@ h1 {
     font-weight: 600;
     font-family: sans-serif;
     text-transform: capitalize;
-    margin: 20px 0px 0px;
+    margin: 20px auto 0px;
+    width: 98%;
 }
 
 .input-fileds {
@@ -81,7 +82,8 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    margin: 50px 0px 30px;
+    margin: 50px auto 30px;
+    width: 98%;
 }
 
 .input-fileds input,
@@ -109,12 +111,13 @@ h1 {
     color: #fff;
     margin: 0px auto;
 }
+
 @media screen and (min-width: 320px) and (max-width: 800px) {
-.input-fileds{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    .input-fileds {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 </style>
